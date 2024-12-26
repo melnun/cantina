@@ -12,6 +12,25 @@
     </header>
     <main>
         <section>
+            <h2>Filtri</h2>
+            <div class="filters">
+                <label for="filter-type">Filtra per tipo:</label>
+                <select id="filter-type" onchange="filterItems()">
+                    <option value="all">Tutti</option>
+                    <option value="liquori">Liquori fatti in casa</option>
+                    <option value="amari">Amari</option>
+                    <option value="whisky">Whisky e Rum</option>
+                </select>
+
+                <label for="filter-alpha">Ordine alfabetico:</label>
+                <select id="filter-alpha" onchange="sortItems()">
+                    <option value="none">Nessuno</option>
+                    <option value="asc">A-Z</option>
+                    <option value="desc">Z-A</option>
+                </select>
+            </div>
+        </section>
+        <section id="liquori" class="filter-section">
             <h2>Liquori fatti in casa</h2>
             <ul>
                 <li>Limoncello</li>
@@ -23,7 +42,7 @@
                 <li>Mirto Zedda Piras</li>
             </ul>
         </section>
-        <section>
+        <section id="amari" class="filter-section">
             <h2>Amari</h2>
             <ul>
                 <li>Amara</li>
@@ -33,7 +52,7 @@
                 <li>Montenegro</li>
             </ul>
         </section>
-        <section>
+        <section id="whisky" class="filter-section">
             <h2>Whisky e Rum</h2>
             <ul>
                 <li>Ron Barcelò</li>
@@ -44,5 +63,41 @@
             </ul>
         </section>
     </main>
+
+    <script>
+        function filterItems() {
+            const filterType = document.getElementById('filter-type').value;
+            const sections = document.querySelectorAll('.filter-section');
+            
+            sections.forEach(section => {
+                if (filterType === 'all' || section.id === filterType) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+
+        function sortItems() {
+            const sortOrder = document.getElementById('filter-alpha').value;
+            const lists = document.querySelectorAll('.filter-section ul');
+            
+            lists.forEach(list => {
+                const items = Array.from(list.querySelectorAll('li'));
+                
+                items.sort((a, b) => {
+                    if (sortOrder === 'asc') {
+                        return a.textContent.localeCompare(b.textContent);
+                    } else if (sortOrder === 'desc') {
+                        return b.textContent.localeCompare(a.textContent);
+                    } else {
+                        return 0;
+                    }
+                });
+
+                items.forEach(item => list.appendChild(item));
+            });
+        }
+    </script>
 </body>
 </html>
