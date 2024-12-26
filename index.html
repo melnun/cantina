@@ -12,21 +12,13 @@
     </header>
     <main>
         <section>
-            <h2>Filtri</h2>
             <div class="filters">
-                <label for="filter-type">Filtra per tipo:</label>
+                <label for="filter-type">Filtra per tipo di alcolico:</label>
                 <select id="filter-type" onchange="filterItems()">
                     <option value="all">Tutti</option>
                     <option value="liquori">Liquori fatti in casa</option>
                     <option value="amari">Amari</option>
                     <option value="whisky">Whisky e Rum</option>
-                </select>
-
-                <label for="filter-alpha">Ordine alfabetico:</label>
-                <select id="filter-alpha" onchange="sortItems()">
-                    <option value="none">Nessuno</option>
-                    <option value="asc">A-Z</option>
-                    <option value="desc">Z-A</option>
                 </select>
             </div>
         </section>
@@ -75,27 +67,6 @@
                 } else {
                     section.style.display = 'none';
                 }
-            });
-        }
-
-        function sortItems() {
-            const sortOrder = document.getElementById('filter-alpha').value;
-            const lists = document.querySelectorAll('.filter-section ul');
-            
-            lists.forEach(list => {
-                const items = Array.from(list.querySelectorAll('li'));
-                
-                items.sort((a, b) => {
-                    if (sortOrder === 'asc') {
-                        return a.textContent.localeCompare(b.textContent);
-                    } else if (sortOrder === 'desc') {
-                        return b.textContent.localeCompare(a.textContent);
-                    } else {
-                        return 0;
-                    }
-                });
-
-                items.forEach(item => list.appendChild(item));
             });
         }
     </script>
