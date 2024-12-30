@@ -1,6 +1,6 @@
 body {
     font-family: 'Times New Roman', Times, serif;
-    background: url('locandina.jpg') no-repeat center center fixed;
+    background: url('background.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -9,10 +9,11 @@ header {
     padding: 20px;
 }
 
-h1 {
-    font-size: 3em;
-    text-transform: uppercase;
-    color: #333;
+header img {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 20px;
+    filter: blur(5px);
 }
 
 h2 {
